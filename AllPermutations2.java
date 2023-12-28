@@ -34,6 +34,7 @@ public class AllPermutations2 {
         List<List<Integer>> ans=new ArrayList<>();
         p2.Permutations2(arr,0,ans);
         System.out.println(ans);
+        
 
         
     }
