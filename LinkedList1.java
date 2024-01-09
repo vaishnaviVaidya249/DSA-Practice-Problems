@@ -1,6 +1,13 @@
 public class LinkedList1 {
-
     Node head;
+    private int size;
+
+    LinkedList1(){
+        this.size=0;
+
+    }
+
+    
     class Node{ 
         //here in java we represent the node as class 
         //in java that will store the data and next
@@ -10,6 +17,7 @@ public class LinkedList1 {
         Node(String data){
             this.data=data;
             this.next=null;
+            size++;
 
         }
 
@@ -49,7 +57,7 @@ public class LinkedList1 {
     public void printList(){
 
         if(head==null){
-            System.out.println("lisr is empty");
+            System.out.println("list is empty");
             return;
         }
         Node currNode=head;
@@ -66,32 +74,55 @@ public class LinkedList1 {
             System.out.println("list is empty");
             return;
         }
+        size--;
         head=head.next;
     }
 
     //delete last
 
-    // public void deleteLast(){
-    //     if(head==null){
-    //         System.out.println("list is empty");
-    //         return;
-    //     }
+    public void deleteLast(){
+        if(head==null){
+            System.out.println("list is empty");
+            return;
+        }
+        size--;
+        if(head.next==null){
+            head=null;
+            return;
+        }
 
-    //     Node secondLast=head;
-    //     Node lastNode=head.next;//head.next=null -> lastNode
-    //     while(lastNode.next!=null){
-    //         lastNode=lastNode.next;
-    //         secondLast=secondLast.next;
-    //     }
-    // }
+        Node secondLast=head;
+        Node lastNode=head.next;//head.next=null -> lastNode
+        while(lastNode.next!=null){
+            lastNode=lastNode.next;
+            secondLast=secondLast.next;
+        }
+        secondLast.next=null;
+    }
+
+    public int getSize(){
+        return size;
+    }
 
     public static void main(String[] args){
         LinkedList1 ll=new LinkedList1();
         ll.addFirst("a");
         ll.addFirst("is");
         ll.printList();
+
         ll.addLast("last");
-         ll.printList();
+        ll.printList();
+
+        ll.deleteFirst();
+        ll.printList();
+
+        ll.deleteLast();
+        ll.printList();
+
+        System.out.println(ll.getSize());
+        ll.addFirst("b");
+        System.out.println(ll.getSize());
+
 
     }
     
