@@ -98,20 +98,59 @@ public class LinkedList2 {
 
     }
 
+    public void delete(int data){
+        if(head==null){
+            System.out.println("no elements to delete");
+            return;
+        }
+    
+        Node currNode=head;
+        while(currNode!=null){
+            if(currNode.data>=data){
+                currNode.next=null;
+                break;
+
+            }
+            currNode=currNode.next;
+        }
+
+
+    }
+
     
 
     
     public static void main(String[] args){  
         LinkedList2 ll2=new LinkedList2();
         int[] a={1,5,7,3,8,2,3};
-        for(int i=0;i<a.length;i++){
-            ll2.addLast(a[i]);
+        for(int i=1;i<=50;i++){
+            ll2.addLast(i);
         }
         
         ll2.printLL2();
         ll2.findEle(7);
+        ll2.delete(25);
+        ll2.printLL2();
 
 
     }
     
 }
+
+
+// public class Solution {
+//     public static Node constructLL(int []arr) {
+//         // Write your code here
+//         Node head=new Node(arr[0]);
+//         Node currNode=head;
+    
+//         for(int i=1;i<arr.length;i++){
+//             Node newNode=new Node(arr[i]);
+//             currNode.next=newNode;
+//             currNode=newNode;
+//         }
+//         return head;
+           
+           
+//     }
+// }
