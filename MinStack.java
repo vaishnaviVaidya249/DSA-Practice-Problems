@@ -33,4 +33,11 @@ class MinStack {
     public int getMin() {
         return st.peek().y;
     }
+
+    public static void main(String[] args) {
+        Pair p=new Pair(4,5);
+        p.push()
+
+        
+    }
 }
