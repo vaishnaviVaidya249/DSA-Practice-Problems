@@ -116,6 +116,74 @@ public static int countOfNodes(Node root){
     return leftNodes+rightNodes+1;
 
 }
+public static int sumOfNodes(Node root){
+    if(root==null){
+        return 0;
+    }
+    int leftSum=sumOfNodes(root.left);
+    int rightSum=sumOfNodes(root.right);
+
+    return leftSum+rightSum+root.data;
+
+}
+public static int heightOfTree(Node root){
+    if(root==null){
+        return 0;
+    }
+    int leftHeight=heightOfTree(root.left);
+    int rightHeight=heightOfTree(root.right);
+    int max_height=Math.max(leftHeight,rightHeight);
+
+    return max_height+1;
+
+}
+
+public static int diameter(Node root){
+    if(root==null){
+        return 0;
+    }
+
+    int diam1=diameter(root.left);
+    int diam2=diameter(root.right);
+    int diam3=heightOfTree(root.left)+heightOfTree(root.right)+1;
+
+    return Math.max(diam3,Math.max(diam1,diam2));
+}
+static class TreeNode{
+    int diam;
+    int h;
+
+    TreeNode(int diam,int h){
+        this.diam=diam;
+        this.h=h;
+    }
+}
+
+public static TreeNode  diameter2(Node root){
+    if(root==null){
+        return new TreeNode(0,0);
+
+
+    }
+
+    TreeNode left=diameter2(root.left);
+    TreeNode right=diameter2(root.right);
+
+    int myHeight=Math.max(left.h,right.h)+1;
+
+
+
+    int diam1=left.diam;
+    int diam2=right.diam;
+    int diam3=left.h+right.h+1;
+
+    int myDiam=Math.max(Math.max(diam1,diam2),diam3);
+TreeNode tn=new TreeNode(myDiam,myHeight);
+    return tn;
+
+
+}
+
 
 
     public static void main(String[] args) {
@@ -131,7 +199,10 @@ public static int countOfNodes(Node root){
         System.out.println("----");
         levelOrder(root);
         System.out.println("count of nodes is "+countOfNodes(root));
-
+        System.out.println("Sum of nodes is "+sumOfNodes(root));
+        System.out.println("heightoftree is "+heightOfTree(root));
+        System.out.println(diameter(root));
+        System.out.println(diameter2(root).diam);
         
     }
 }
