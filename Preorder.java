@@ -1,6 +1,4 @@
 import java.util.*;
-
-
 class Preorder{
     static class Node{
         int data;
@@ -178,10 +176,83 @@ public static TreeNode  diameter2(Node root){
     int diam3=left.h+right.h+1;
 
     int myDiam=Math.max(Math.max(diam1,diam2),diam3);
-TreeNode tn=new TreeNode(myDiam,myHeight);
+    TreeNode tn=new TreeNode(myDiam,myHeight);
     return tn;
 
 
+}
+
+public static int sumOfNodesAtLevelK(Node root,int k){
+    Queue<Node> q=new LinkedList<>();
+    q.add(root);
+    int sum=0;
+    int level=0;
+
+    while(!q.isEmpty()){
+        int size=q.size();
+        level++;
+
+        while(size>0){
+            Node t=q.remove();
+            size--;
+
+            if(level==k){
+                sum+=t.data;
+            }
+
+            if(t.left!=null){
+                q.add(t.left);
+            }
+
+            if(t.right!=null){
+                q.add(t.right);
+            }
+        }
+        if(level>k){
+            break;
+        }
+
+
+    }
+    return sum;
+   
+
+    
+          
+}
+
+public static void sumOfNodesLevelWise(Node root){
+    System.out.println("sum of nodes level wise is:");
+    if(root==null){
+        System.out.println("sum is 0");
+        return;
+    }
+    Queue<Node> q=new LinkedList<>();
+    q.add(root);
+
+    while(true){
+        int size=q.size();
+        if(size==0){
+            break;
+        }
+        int sum=0;
+
+        while(size>0){
+            Node t=q.remove();
+            sum=sum+t.data;
+            
+            if(t.left!=null){
+                q.add(t.left);
+            }
+
+            if(t.right!=null){
+                q.add(t.right);
+            }
+            size--;
+        }
+        System.out.print(sum+" ");
+    }
+    
 }
 
 
@@ -203,6 +274,11 @@ TreeNode tn=new TreeNode(myDiam,myHeight);
         System.out.println("heightoftree is "+heightOfTree(root));
         System.out.println(diameter(root));
         System.out.println(diameter2(root).diam);
+        sumOfNodesLevelWise(root);
+        System.out.println();
+        System.out.println("sum at level k");
+        System.out.println(sumOfNodesAtLevelK(root,3));
+
         
     }
 }
