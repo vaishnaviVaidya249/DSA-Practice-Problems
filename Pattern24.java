@@ -24,7 +24,7 @@ public class Pattern24 {
                 if(j%2==0){
                     z=z+2*(5-i)-1;
                 }else{
-                    z=z+2*(i-1);
+                    z=z+2*(i-j);
                 }
             }
             y=y+1;
